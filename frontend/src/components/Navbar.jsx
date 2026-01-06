@@ -29,7 +29,7 @@ export default function Navbar() {
         {/* RIGHT SIDE */}
         <div className="flex items-center gap-8 text-lg font-medium">
 
-          {/* 🟢 LANDING PAGE */}
+         
           {!isDashboard && !isAuthPage && (
             <>
               <a
@@ -64,7 +64,6 @@ export default function Navbar() {
             </>
           )}
 
-          {/* 🟡 LOGIN / REGISTER PAGE */}
           {isAuthPage && (
             <Link
               to="/"
@@ -74,7 +73,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          {/* 🔐 DASHBOARD */}
+    
           {isDashboard && token && (
             <>
               <span className="text-slate-600 font-semibold">
