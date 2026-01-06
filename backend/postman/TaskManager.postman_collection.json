@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "6517043a-06c8-4e43-9a7a-ce00a3f702df",
+		"name": "TaskManager",
+		"description": "TaskManager API provides secure authentication and task management features.\n\nThis collection includes APIs for:\n\n- User Registration and Login using JWT authentication\n    \n- Creating, retrieving, updating, and deleting tasks\n    \n- Secure access to protected routes using Bearer tokens\n    \n\nJWT tokens are automatically generated on login and stored in Postman environment variables for seamless testing.\n\nTech Stack:\n\n- Node.js\n    \n- Express.js\n    \n- MongoDB\n    \n- JWT Authentication\n    \n\nSteps to use:\n\n1. Import the collection into Postman\n    \n2. Set base_url in environment (e.g. [http://localhost:9000](http://localhost:5000))\n    \n3. Register a user\n    \n4. Login to generate JWT token\n    \n5. Test all protected task APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45827312"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Vedant Gupta\",\r\n  \"email\": \"vedant@test.com\",\r\n  \"password\": \"123456\",\r\n  \"role\": \"user\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				},
+				"description": "Registers a new user with hashed password and role-based access."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Learn Postman\",\r\n  \"description\": \"Testing secured APIs\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tasks",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Learn Postman\",\r\n  \"description\": \"Testing secured APIs\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/tasks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NWNhOTU4N2EyY2I0OTg1ZjIyNWFlMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzY3NjgwNDc4LCJleHAiOjE3Njc3NjY4Nzh9.F0koNjUyg64vJxPszIXw9l_wuRLMEVahM8kFB4YnFyM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/tasks/695caab67a2cb4985f225ae6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"tasks",
+						"695caab67a2cb4985f225ae6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
