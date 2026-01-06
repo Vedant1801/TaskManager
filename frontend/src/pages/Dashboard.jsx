@@ -99,14 +99,13 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* STATS */}
         <div className="grid grid-cols-3 gap-4">
           <StatCard label="Total Tasks" value={total} color="indigo" />
           <StatCard label="Completed" value={completed} color="green" />
           <StatCard label="Pending" value={pending} color="orange" />
         </div>
 
-        {/* ERROR */}
+       
         {error && (
           <div className="bg-red-100 text-red-700 p-3 rounded">
             {error}
@@ -129,7 +128,7 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {/* TASK LIST */}
+       
         <div className="bg-white rounded-xl shadow divide-y">
           {loading ? (
             <p className="p-6 text-slate-500">Loading tasks...</p>
@@ -181,7 +180,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* EDIT MODAL */}
+      
       {editTask && (
         <Modal>
           <h3 className="text-lg font-semibold mb-4">Edit Task</h3>
@@ -200,7 +199,6 @@ export default function Dashboard() {
         </Modal>
       )}
 
-      {/* DELETE MODAL */}
       {deleteId && (
         <Modal>
           <p className="mb-4">
@@ -218,7 +216,6 @@ export default function Dashboard() {
   );
 }
 
-/* ======= SMALL REUSABLE COMPONENTS ======= */
 
 function StatCard({ label, value, color }) {
   const colors = {
