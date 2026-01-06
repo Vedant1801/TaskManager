@@ -18,7 +18,7 @@ export default function Navbar() {
     <header className="bg-[#8AA6D9] py-8">
       <nav className="max-w-6xl mx-auto bg-white rounded-2xl shadow-md px-10 py-5 flex items-center justify-between">
 
-        {/* Logo */}
+       
         <Link
           to={token ? "/dashboard" : "/"}
           className="text-2xl font-extrabold text-indigo-700 tracking-wide"
@@ -26,7 +26,6 @@ export default function Navbar() {
           TaskManager
         </Link>
 
-        {/* RIGHT SIDE */}
         <div className="flex items-center gap-8 text-lg font-medium">
 
          
