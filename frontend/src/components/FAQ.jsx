@@ -57,7 +57,7 @@ export default function FAQ() {
                   </span>
                 </button>
 
-                {/* Answer */}
+            
                 <div
                   className={`px-6 overflow-hidden transition-all duration-300 ease-in-out
                     ${isOpen ? "max-h-40 py-4" : "max-h-0 py-0"}`}
