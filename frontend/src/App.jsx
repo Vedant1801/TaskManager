@@ -10,7 +10,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 function App() {
   return (
     <BrowserRouter>
-      {/* ✅ Navbar only once */}
+      
       <Navbar />
 
       <Routes>

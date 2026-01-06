@@ -87,7 +87,6 @@ export default function Dashboard() {
     <div className="min-h-screen bg-slate-100 p-8">
       <div className="max-w-4xl mx-auto space-y-6">
 
-        {/* HEADER */}
         <div className="bg-white p-6 rounded-xl shadow flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-slate-800">
@@ -112,7 +111,7 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* ADD TASK */}
+       
         <div className="bg-white p-6 rounded-xl shadow flex gap-3">
           <input
             value={title}
