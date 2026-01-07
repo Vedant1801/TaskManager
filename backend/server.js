@@ -11,7 +11,11 @@ connectDB();
 // CORS CONFIG (IMPORTANT)
 app.use(
   cors({
-    origin: "http://localhost:5173", // React (Vite) frontend
+    origin: [
+      "http://localhost:5173",
+      "https://task-manager-frontend-zeta-three.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
 );
