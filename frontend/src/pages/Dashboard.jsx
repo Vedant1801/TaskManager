@@ -10,7 +10,6 @@ export default function Dashboard() {
   const [editTask, setEditTask] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
-  // FETCH TASKS
   const fetchTasks = async () => {
     try {
       setLoading(true);
@@ -23,7 +22,6 @@ export default function Dashboard() {
     }
   };
 
-  // CREATE
   const createTask = async () => {
     if (!title.trim()) return;
     try {
@@ -38,7 +36,6 @@ export default function Dashboard() {
     }
   };
 
-  // TOGGLE COMPLETE
   const toggleComplete = async (task) => {
     try {
       await api.put(`/tasks/${task._id}`, {
@@ -50,7 +47,6 @@ export default function Dashboard() {
     }
   };
 
-  // UPDATE
   const updateTask = async () => {
     try {
       await api.put(`/tasks/${editTask._id}`, {
@@ -63,7 +59,6 @@ export default function Dashboard() {
     }
   };
 
-  // DELETE
   const deleteTask = async () => {
     try {
       await api.delete(`/tasks/${deleteId}`);
@@ -78,41 +73,40 @@ export default function Dashboard() {
     fetchTasks();
   }, []);
 
-  // STATS
   const total = tasks.length;
   const completed = tasks.filter(t => t.completed).length;
   const pending = total - completed;
 
   return (
-    <div className="min-h-screen bg-slate-100 p-8">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen bg-slate-100 px-4 py-6 sm:px-6 lg:px-10">
+      <div className="max-w-5xl mx-auto space-y-6">
 
-        <div className="bg-white p-6 rounded-xl shadow flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold text-slate-800">
-              Task Dashboard
-            </h1>
-            <p className="text-slate-500 text-sm">
-              Manage your tasks efficiently
-            </p>
-          </div>
+        
+        <div className="bg-white p-5 rounded-xl shadow">
+          <h1 className="text-2xl font-bold text-slate-800">
+            Task Dashboard
+          </h1>
+          <p className="text-sm text-slate-500">
+            Organize and track your daily tasks
+          </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+    
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <StatCard label="Total Tasks" value={total} color="indigo" />
           <StatCard label="Completed" value={completed} color="green" />
           <StatCard label="Pending" value={pending} color="orange" />
         </div>
 
-       
+      
         {error && (
           <div className="bg-red-100 text-red-700 p-3 rounded">
             {error}
           </div>
         )}
 
-       
-        <div className="bg-white p-6 rounded-xl shadow flex gap-3">
+        
+        <div className="bg-white p-4 rounded-xl shadow flex flex-col sm:flex-row gap-3">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -121,25 +115,28 @@ export default function Dashboard() {
           />
           <button
             onClick={createTask}
-            className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+            disabled={loading}
+            className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 disabled:opacity-50"
           >
             Add Task
           </button>
         </div>
 
-       
+        
         <div className="bg-white rounded-xl shadow divide-y">
           {loading ? (
-            <p className="p-6 text-slate-500">Loading tasks...</p>
+            <p className="p-6 text-center text-slate-500">
+              Loading tasks...
+            </p>
           ) : tasks.length === 0 ? (
-            <p className="p-6 text-slate-500 text-center">
+            <p className="p-6 text-center text-slate-500">
               No tasks added yet
             </p>
           ) : (
             tasks.map(task => (
               <div
                 key={task._id}
-                className="p-4 flex justify-between items-center hover:bg-slate-50"
+                className="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-slate-50"
               >
                 <div className="flex items-center gap-4">
                   <input
@@ -149,10 +146,10 @@ export default function Dashboard() {
                     className="w-5 h-5 accent-indigo-600"
                   />
                   <span
-                    className={`text-slate-700 ${
+                    className={`${
                       task.completed
                         ? "line-through text-gray-400"
-                        : ""
+                        : "text-slate-700"
                     }`}
                   >
                     {task.title}
@@ -214,6 +211,7 @@ export default function Dashboard() {
     </div>
   );
 }
+
 
 
 function StatCard({ label, value, color }) {

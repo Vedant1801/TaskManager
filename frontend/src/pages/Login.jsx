@@ -47,7 +47,7 @@ export default function Login() {
         )}
 
         <form onSubmit={handleLogin} className="space-y-4">
-          {/* Email */}
+         
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Email Address
@@ -63,7 +63,6 @@ export default function Login() {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">
               Password
@@ -79,7 +78,7 @@ export default function Login() {
             />
           </div>
 
-          {/* Button */}
+         
           <button
             type="submit"
             disabled={loading}

@@ -14,7 +14,7 @@ const faqs = [
   {
     question: "Can I access it on mobile?",
     answer:
-      "Yes, DuoTasker is fully responsive and works smoothly on mobile, tablet, and desktop devices."
+      "Yes, TaskManager is fully responsive and works smoothly on mobile, tablet, and desktop devices."
   }
 ];
 
@@ -32,22 +32,24 @@ export default function FAQ() {
           Frequently Asked Questions
         </h2>
 
-        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+        <div className="bg-white rounded-xl shadow-md divide-y">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
-              <div key={index} className="border-b last:border-none">
+              <div key={index}>
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className={`w-full text-left px-6 py-4 font-medium flex justify-between items-center transition-colors
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-${index}`}
+                  className={`w-full flex justify-between items-center px-6 py-4 text-left font-medium transition
                     ${
                       isOpen
                         ? "bg-indigo-100 text-indigo-900"
                         : "bg-white text-slate-800 hover:bg-slate-50"
                     }`}
                 >
-                  {faq.question}
+                  <span>{faq.question}</span>
                   <span
                     className={`transform transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
@@ -57,14 +59,15 @@ export default function FAQ() {
                   </span>
                 </button>
 
-            
                 <div
-                  className={`px-6 overflow-hidden transition-all duration-300 ease-in-out
-                    ${isOpen ? "max-h-40 py-4" : "max-h-0 py-0"}`}
+                  id={`faq-${index}`}
+                  className={`grid transition-all duration-300 ease-in-out
+                    ${isOpen ? "grid-rows-[1fr] px-6 py-4" : "grid-rows-[0fr] px-6"}
+                  `}
                 >
-                  <p className="text-slate-600">
+                  <div className="overflow-hidden text-slate-600 text-sm leading-relaxed">
                     {faq.answer}
-                  </p>
+                  </div>
                 </div>
               </div>
             );
@@ -74,4 +77,3 @@ export default function FAQ() {
     </section>
   );
 }
-
